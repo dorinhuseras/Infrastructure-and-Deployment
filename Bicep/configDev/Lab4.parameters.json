@@ -1,0 +1,115 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "projectName": {
+        "value": "DorinHuseras"
+      },
+      "vnet": {
+        "value": {
+          "vnetAddressSpaces": [
+            "10.31.0.0/16"
+          ],
+          "subnets": [
+            {
+              "name": "app-services-subnet",
+              "ipAddressRange": "10.31.0.0/24",
+              "delegations": [
+                {
+                  "name": "delegation",
+                  "properties": {
+                    "serviceName": "Microsoft.Web/serverfarms"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "sql-servers-subnet",
+              "ipAddressRange": "10.31.1.0/24",
+              "delegations": []
+            },
+            {
+              "name": "storage-subnet",
+              "ipAddressRange": "10.31.2.0/24",
+              "delegations": []
+            },
+            {
+              "name": "keyvault-subnet",
+              "ipAddressRange": "10.31.3.0/24",
+              "delegations": []
+            },
+            {
+              "name": "redis-cache-subnet",
+              "ipAddressRange": "10.31.4.0/24",
+              "delegations": []
+            },
+            {
+              "name": "app2-services-subnet",
+              "ipAddressRange": "10.31.5.0/24",
+              "delegations": [
+                {
+                  "name": "delegation",
+                  "properties": {
+                    "serviceName": "Microsoft.Web/serverfarms"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "services-subnet",
+              "ipAddressRange": "10.31.6.0/24",
+              "delegations": []
+          }
+  
+          ]
+        }
+      },
+      "appServicePlans": {
+        "value": [          {
+          "prefix": "",
+          "suffix": "Demo",
+          "sku": "S1"
+        }]
+      },
+      "appServices": {
+        "value": [
+        {
+            "prefix": "",
+            "suffix": "Demo",
+            "spPrefix": "",
+            "spSuffix": "Demo",
+            "vNetIntegrationSubnet": "app-services-subnet"
+        }]
+      },
+      "storageAccounts": {
+        "value": [
+        ]
+      },
+      "sqlServers": {
+        "value": [
+        ]
+      },
+      "sqlDatabases": {
+        "value": [     
+        ]
+      },
+      "serviceBuses": {
+        "value": [
+        ]
+      },
+      "cosmosServers": {
+        "value": []
+      },
+      "redisCaches": {
+        "value": []
+      },
+      "keyvault": {
+        "value": {
+          "prefix": "",
+          "suffix":"KeyVault",
+          "publicNetworkAccess": "Enabled",
+          "accessPolicy": []
+        }
+      }
+    }
+  }
