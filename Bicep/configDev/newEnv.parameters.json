@@ -1,0 +1,217 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "projectName": {
+        "value": "TrnEnv"
+      },
+      "vnet": {
+        "value": {
+          "vnetAddressSpaces": [
+            "10.31.0.0/16"
+          ],
+          "subnets": [
+            {
+              "name": "app-services-subnet",
+              "ipAddressRange": "10.31.0.0/24",
+              "delegations": [
+                {
+                  "name": "delegation",
+                  "properties": {
+                    "serviceName": "Microsoft.Web/serverfarms"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "sql-servers-subnet",
+              "ipAddressRange": "10.31.1.0/24",
+              "delegations": []
+            },
+            {
+              "name": "storage-subnet",
+              "ipAddressRange": "10.31.2.0/24",
+              "delegations": []
+            },
+            {
+              "name": "keyvault-subnet",
+              "ipAddressRange": "10.31.3.0/24",
+              "delegations": []
+            },
+            {
+              "name": "redis-cache-subnet",
+              "ipAddressRange": "10.31.4.0/24",
+              "delegations": []
+            },
+            {
+              "name": "app2-services-subnet",
+              "ipAddressRange": "10.31.5.0/24",
+              "delegations": [
+                {
+                  "name": "delegation",
+                  "properties": {
+                    "serviceName": "Microsoft.Web/serverfarms"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "services-subnet",
+              "ipAddressRange": "10.31.6.0/24",
+              "delegations": []
+          }
+  
+          ]
+        }
+      },
+      "appServicePlans": {
+        "value": [          {
+          "prefix": "",
+          "suffix": "Apb",
+          "sku": "S1"
+        }]
+      },
+      "appServices": {
+        "value": [
+        {
+            "prefix": "",
+            "suffix": "Asb",
+            "spPrefix": "",
+            "spSuffix": "Apb",
+            "vNetIntegrationSubnet": "app-services-subnet"
+        }]
+      },
+      "storageAccounts": {
+        "value": [
+          {
+            "prefix": "",
+            "suffix": "asfstor",
+            "secretSuffix": "StorageConnectionString",
+            "resourceTags": { 
+              "DisplayName": "masterStorage"
+            },
+            "blobs": [],
+            "shares": [],
+            "queues": [],
+            "tables": ["EmailTemplatesProjection", "MigrationDetailProjection", "Tenant","TenantConfiguration"],
+            "kind": "StorageV2",
+            "sku": {
+              "name": "Standard_LRS",
+              "tier": "Standard"
+            },
+            "properties": {
+              "publicNetworkAccess": "Enabled",
+              "networkAcls": {}
+            }
+          },
+          {
+              "tenant": "ten1",
+              "prefix": "sa",
+              "suffix": "",
+              "secretSuffix": "StorageConnectionString",
+              "resourceTags": {},
+              "blobs": ["ten1blob1"],
+              "shares": [],
+              "queues": [],
+              "tables": [],
+              "kind": "StorageV2",
+              "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+              },
+              "properties": {
+                "publicNetworkAccess": "Enabled",
+                "networkAcls": {}
+              }
+            },
+            {
+                "tenant": "",
+                "prefix": "sa",
+                "suffix": "",
+                "secretSuffix": "StorageConnectionString",
+                "resourceTags": {},
+                "blobs": [],
+                "shares": [],
+                "queues": [],
+                "tables": [],
+                "kind": "StorageV2",
+                "sku": {
+                  "name": "Standard_LRS",
+                  "tier": "Standard"
+                },
+                "properties": {
+                  "publicNetworkAccess": "Enabled",
+                  "networkAcls": {}
+                }
+              }
+        ]
+      },
+      "sqlServers": {
+        "value": [
+          {
+            "prefix": "",
+            "suffix": "sql",
+            "publicNetworkAccess": "Enabled"
+          }
+        ]
+      },
+      "sqlDatabases": {
+        "value": [     
+            {
+                "tenant": "ten1",
+                "prefix": "Db",
+                "suffix": "",
+                "secretSuffix": "SqlConnectionString",
+                "parentPrefix":"",
+                "parentSuffix":"sql",
+                "maxSizeBytes": "1073741824",
+                "requestedBackupStorageRedundancy": "Local",
+                "sku":{
+                    "name":"Basic",
+                    "tier":"Basic",
+                    "capacity": 5
+                }
+            },
+            {
+              "tenant": "ten2",
+              "prefix": "Db",
+              "suffix": "",
+              "secretSuffix": "SqlConnectionString",
+              "parentPrefix":"",
+              "parentSuffix":"sql",
+              "maxSizeBytes": "1073741824",
+              "requestedBackupStorageRedundancy": "Local",
+              "sku":{
+                  "name":"Basic",
+                  "tier":"Basic",
+                  "capacity": 5
+              }
+          }
+        ]
+      },
+      "serviceBuses": {
+        "value": [
+          {
+            "prefix": "",
+            "suffix": "Sb",
+            "secretSuffix": "ServiceBusConnectionString",
+            "sku": "Standard"
+          }
+        ]
+      },
+      "cosmosServers": {
+        "value": []
+      },
+      "redisCaches": {
+        "value": []
+      },
+      "keyvault": {
+        "value": {
+          "prefix": "",
+          "suffix":"KeyVault",
+          "publicNetworkAccess": "Enabled",
+          "accessPolicy": []
+        }
+      }
+    }
+  }

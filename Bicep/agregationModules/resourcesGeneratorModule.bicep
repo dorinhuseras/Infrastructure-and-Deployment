@@ -117,8 +117,6 @@ module sqlServerModuleNew '../modules/sqlServernew.bicep' = [ for resource in sq
   scope: resourceGroup(resource.subId, resource.rg)
   params: {
     location: location
-    administratorLogin: projectName
-    administratorLoginPassword: 'SecretPassword'
     resourceTags: resourceTags
     databaseServerName: resource.name
     firewallRules: environmentIpRestrictions.outputs.databaseIpRestrictions

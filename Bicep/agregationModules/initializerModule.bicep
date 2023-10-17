@@ -22,8 +22,6 @@ param redisCaches array = []
 
 param keyvault object
 
-param masterSetup object = {}
-
 param tenants array = []
 
 param projectName string
@@ -141,16 +139,6 @@ output keyVault object = {
   rg: contains(keyvault,'rg') ? keyvault.rg : resourceGroup().name
   subId: contains(keyvault,'subId') ? keyvault.subId : subscription().subscriptionId
 }
-
-
-output masterSetup array = [for tenant in tenatnsFromDb : {
-  MasterStorageName: !contains(masterSetup.masterTenant,'name') ? '${masterSetup.masterTenant.prefix}${lowerProjectName}${masterSetup.masterTenant.suffix}' : masterSetup.masterTenant.name
-  TenantName: tenant
-  TenantConfigDestinationTableName: masterSetup.tenantConfigurationTable.name
-  TenantDestinationTableName: masterSetup.tenantTable.name
-  TenantConfigTemplateName: masterSetup.tenantConfigurationTable.template
-  TenantTemplateName: masterSetup.tenantTable.template
-}]
 
 output managedIdentities array = tenants != [] ? tenatnsFromDefinition : tenatnsFromDb
 

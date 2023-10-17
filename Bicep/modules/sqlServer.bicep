@@ -11,7 +11,7 @@ param databaseServerName string
 
 param firewallRules array = []
 
-param azureADOnlyAuthentication bool = false
+param azureADOnlyAuthentication bool = true
 
 
 resource sqlServerResource 'Microsoft.Sql/servers@2022-05-01-preview' ={
@@ -30,7 +30,7 @@ resource sqlServerResource 'Microsoft.Sql/servers@2022-05-01-preview' ={
       login: 'SQL Server Admins'
       administratorType: 'ActiveDirectory'
       principalType: 'Group'
-      sid: 'f0d44e85-bb14-4e9c-bed2-7e65d44712ac'
+      sid: '7f85ccb4-016f-4c94-b902-2b07b87dbae5'
       tenantId: subscription().tenantId
       azureADOnlyAuthentication: azureADOnlyAuthentication
     }

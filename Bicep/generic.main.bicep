@@ -30,9 +30,8 @@ param redisCaches array = []
 
 param tenants array = []
 
-param masterSetup object = {}
-
 param keyvault object
+
 
 param resourceTags object = {
   EnvironmentName: environmentType
@@ -41,13 +40,17 @@ param resourceTags object = {
 }
 
 @description('Set this to true only on the first deployment of the template. It is used for Vnet Dns Link, that can happen only one time')
-param newEnvironment bool = false
+param newEnvironment bool = true
 
 param createResources bool = true
 
 param createPrivateEndpoints bool = false
 
 param configureMis bool = false
+
+param useUamiConnection bool = true
+
+param saveSecrets bool = true
 
 //End of Parameters Definition section 
 
@@ -66,7 +69,6 @@ module initializerModule 'agregationModules/initializerModule.bicep' = {
     serviceBuses: serviceBuses
     cosmosServers: cosmosServers
     redisCaches: redisCaches
-    masterSetup: masterSetup
     tenants: tenants
   }
 }
@@ -114,6 +116,26 @@ module peGenerationModule 'agregationModules/privateEndpointsModule.bicep' = if 
   }
 }
 //End of DNS & PE creation section
+
+
+//Secret writer section
+module secretGenerationModule 'agregationModules/secretsGeneratorModule.bicep' = if (saveSecrets == true) {
+  name: 'secretGeneration-module'
+  dependsOn: [initializerModule, resourceGenerationModule]
+  params: {
+    location: location
+    useUamiConnection: useUamiConnection
+    projectName: projectName
+    storageAccounts: initializerModule.outputs.storageAccounts
+    sqlDatabases: initializerModule.outputs.sqlDatabases
+    serviceBuses: initializerModule.outputs.serviceBuses
+    redisCaches: initializerModule.outputs.redisCaches
+    managedIdentities: initializerModule.outputs.managedIdentities
+    keyvault: initializerModule.outputs.keyVault
+  }
+}
+//End of Secret writer section
+
 
 //Set MIs section
 module setMisOnAppsModules 'agregationModules/iamModule.bicep' = if (configureMis == true) {

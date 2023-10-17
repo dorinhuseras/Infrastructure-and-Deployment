@@ -11,14 +11,7 @@ param databaseServerName string
 
 param firewallRules array = []
 
-@description('The administrator username of the SQL logical server.')
-param administratorLogin string
-
-@description('The administrator password of the SQL logical server.')
-@secure()
-param administratorLoginPassword string
-
-param azureADOnlyAuthentication bool = false
+param azureADOnlyAuthentication bool = true
 
 resource sqlServerResource 'Microsoft.Sql/servers@2022-05-01-preview' ={
   name: databaseServerName
@@ -32,13 +25,11 @@ resource sqlServerResource 'Microsoft.Sql/servers@2022-05-01-preview' ={
     publicNetworkAccess: publicNetworkAccess
     restrictOutboundNetworkAccess: 'Disabled'
     version: '12.0'
-    administratorLogin: administratorLogin
-    administratorLoginPassword: administratorLoginPassword
     administrators: {
       login: 'SQL Server Admins'
       administratorType: 'ActiveDirectory'
       principalType: 'Group'
-      sid: 'f0d44e85-bb14-4e9c-bed2-7e65d44712ac'
+      sid: '7f85ccb4-016f-4c94-b902-2b07b87dbae5'
       tenantId: subscription().tenantId
       azureADOnlyAuthentication: azureADOnlyAuthentication
     }
