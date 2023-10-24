@@ -1,7 +1,7 @@
-$tenantId = ""
-$SqlServerName = ""
-$SqlDatabaseName = ""
-$MiName = ""
+$tenantId = "088d4db9-9b6c-4e6e-9443-445753fb73fe"
+$SqlServerName = "exersicelab2"
+$SqlDatabaseName = "demo-database"
+$MiName = "DorinTrnNewEnvAsb"
 
 function Set-DbRoles-To-Mi {
     param (

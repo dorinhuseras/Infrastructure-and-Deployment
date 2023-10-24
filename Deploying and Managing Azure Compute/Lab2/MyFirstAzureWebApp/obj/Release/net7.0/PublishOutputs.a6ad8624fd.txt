@@ -1,0 +1,7 @@
+/Users/dorin.huseras/Documents/GitHub/Infrastructure-and-Deployment/Deploying and Managing Azure Compute/Lab2/MyFirstAzureWebApp/bin/Release/net7.0/publish/MyFirstAzureWebApp
+/Users/dorin.huseras/Documents/GitHub/Infrastructure-and-Deployment/Deploying and Managing Azure Compute/Lab2/MyFirstAzureWebApp/bin/Release/net7.0/publish/appsettings.Development.json
+/Users/dorin.huseras/Documents/GitHub/Infrastructure-and-Deployment/Deploying and Managing Azure Compute/Lab2/MyFirstAzureWebApp/bin/Release/net7.0/publish/appsettings.json
+/Users/dorin.huseras/Documents/GitHub/Infrastructure-and-Deployment/Deploying and Managing Azure Compute/Lab2/MyFirstAzureWebApp/bin/Release/net7.0/publish/MyFirstAzureWebApp.dll
+/Users/dorin.huseras/Documents/GitHub/Infrastructure-and-Deployment/Deploying and Managing Azure Compute/Lab2/MyFirstAzureWebApp/bin/Release/net7.0/publish/MyFirstAzureWebApp.deps.json
+/Users/dorin.huseras/Documents/GitHub/Infrastructure-and-Deployment/Deploying and Managing Azure Compute/Lab2/MyFirstAzureWebApp/bin/Release/net7.0/publish/MyFirstAzureWebApp.runtimeconfig.json
+/Users/dorin.huseras/Documents/GitHub/Infrastructure-and-Deployment/Deploying and Managing Azure Compute/Lab2/MyFirstAzureWebApp/bin/Release/net7.0/publish/MyFirstAzureWebApp.pdb
