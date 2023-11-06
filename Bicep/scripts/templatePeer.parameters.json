@@ -1,0 +1,96 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "value": "VpnGateway"
+    },
+    "vnet": {
+      "value": {
+        "vnetAddressSpaces": [
+          "10.254.0.0/24",
+          "10.254.1.0/24",
+          "10.254.2.0/24",
+          "10.254.3.0/24",
+          "10.254.4.0/24",
+          "10.254.5.0/24",
+          "10.254.6.0/24",
+          "10.254.7.0/24"
+        ],
+        "subnets": [
+          {
+            "name": "GatewaySubnet",
+            "ipAddressRange": "10.254.0.0/24",
+            "delegations": []
+          },
+          {
+            "name": "DnsResolver",
+            "ipAddressRange": "10.254.1.0/24",
+            "delegations": [
+              {
+                "name": "delegation",
+                "properties": {
+                  "serviceName": "Microsoft.Network/dnsResolvers"
+                }
+              }
+            ]
+          },
+          {
+            "name": "sql-servers-subnet",
+            "ipAddressRange": "10.254.2.0/24",
+            "delegations": []
+          },
+          {
+            "name": "storage-table-subnet",
+            "ipAddressRange": "10.254.3.0/24",
+            "delegations": []
+          },
+          {
+            "name": "keyvault-subnet",
+            "ipAddressRange": "10.254.4.0/24",
+            "delegations": []
+          },
+          {
+            "name": "appservices-subnet",
+            "ipAddressRange": "10.254.5.0/24",
+            "delegations": []
+          },
+          {
+            "name": "redis-cache-subnet",
+            "ipAddressRange": "10.254.6.0/24",
+            "delegations": []
+          },
+          {
+            "name": "storage-blob-subnet",
+            "ipAddressRange": "10.254.7.0/24",
+            "delegations": []
+          }
+        ]
+      }
+    },
+    "vnetPeers": {
+      "value": [
+        {
+          "name": "artvnetwe",
+          "rg": "arturos-rg",
+          "subscription": "4c4bb80d-f8a1-491b-9cb9-0892d534b99c",
+          "resourceTags": {
+            "Project": "coraxAngular",
+            "DeploymentType": "Bicep",
+            "EnvironmentName": "Dev"
+          }
+        },
+        {
+          "name": "artvnetwe2",
+          "rg": "arturos-rg",
+          "subscription": "4c4bb80d-f8a1-491b-9cb9-0892d534b99c",
+          "resourceTags": {
+            "Project": "coraxAngular",
+            "DeploymentType": "Bicep",
+            "EnvironmentName": "Dev"
+          }
+        }
+      ]
+    }
+  }
+}

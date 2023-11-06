@@ -1,0 +1,22 @@
+[{
+    "allowedMemberTypes": [
+        "User"
+    ],
+    "description": "Manager",
+    "displayName": "Manager",
+    "isEnabled": true,
+    "lang": null,
+    "origin": "Application",
+    "value": "Manager"
+},
+{
+    "allowedMemberTypes": [
+        "User"
+    ],
+    "description": "Administrator",
+    "displayName": "Administrator",
+    "isEnabled": true,
+    "lang": null,
+    "origin": "Application",
+    "value": "Administrator"
+}]
